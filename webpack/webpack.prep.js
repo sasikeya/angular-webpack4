@@ -22,7 +22,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
     entry: {
         polyfills: './src/polyfills',
         global: './src/common/scss/global.scss',
-        main: './src/main-aot'
+        main: './src/main'
     },
     output: {
         path: utils.root('dist/www'),

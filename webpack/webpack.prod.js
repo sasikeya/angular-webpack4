@@ -22,12 +22,12 @@ module.exports = webpackMerge(commonConfig(), {
     entry: {
         polyfills: './src/polyfills',
         global: './src/common/scss/global.scss',
-        main: './src/main-aot'
+        main: './src/main'
     },
     output: {
         path: utils.root('dist/www'),
-        filename: 'app/[name].[hash].bundle.js',
-        chunkFilename: 'app/[id].[hash].chunk.js'
+        chunkFilename: 'app/[id].[hash].chunk.js',
+        filename: 'app/[name].[hash].bundle.js'
     },
     module: {
         rules: [{
@@ -61,40 +61,40 @@ module.exports = webpackMerge(commonConfig(), {
             // Webpack statistics in dist folder
             filename: '../stats.html'
         }),
-        new UglifyJSPlugin({
-            parallel: true,
-            uglifyOptions: {
-                ie8: false,
-                // sourceMap: true, // Enable source maps. Please note that this will slow down the build
-                compress: {
-                    dead_code: true,
-                    warnings: false,
-                    properties: true,
-                    drop_debugger: true,
-                    conditionals: true,
-                    booleans: true,
-                    loops: true,
-                    unused: true,
-                    toplevel: true,
-                    if_return: true,
-                    inline: true,
-                    join_vars: true
-                },
-                output: {
-                    comments: false,
-                    beautify: false,
-                    indent_level: 2
-                }
-            }
-        }),
+        // new UglifyJSPlugin({
+        //     parallel: true,
+        //     uglifyOptions: {
+        //         ie8: false,
+        //         // sourceMap: true, // Enable source maps. Please note that this will slow down the build
+        //         compress: {
+        //             dead_code: true,
+        //             warnings: false,
+        //             properties: true,
+        //             drop_debugger: true,
+        //             conditionals: true,
+        //             booleans: true,
+        //             loops: true,
+        //             unused: true,
+        //             toplevel: true,
+        //             if_return: true,
+        //             inline: true,
+        //             join_vars: true
+        //         },
+        //         output: {
+        //             comments: false,
+        //             beautify: false,
+        //             indent_level: 2
+        //         }
+        //     }
+        // }),
         // new ngcWebpack.NgcWebpackPlugin({
         //     disabled: false,
         //     tsConfig: utils.root('tsconfig-aot.json'),
         //     resourceOverride: ''
         // }),
         new AngularCompilerPlugin({
-            entryModule: utils.root('src/app/app.module#AppModule'),
-            // mainPath: utils.root('src/main.ts'),
+            // entryModule: utils.root('src/app/app.module#AppModule'),
+            mainPath: utils.root('src/main.ts'),
             tsConfigPath: utils.root('tsconfig-aot.json'),
             sourceMap: true
         }),

@@ -21,5 +21,11 @@
     "include": [
         "src/app",
         "src/test/javascript/"
-    ]
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "**/*.ngfactory.ts",
+        "**/*.shim.ts"
+    ],
 }

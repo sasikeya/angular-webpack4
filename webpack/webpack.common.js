@@ -59,8 +59,12 @@ module.exports = (options) => {
     },
     optimization: {
       splitChunks: {
-        chunks: 'initial', // 只对入口文件处理
         cacheGroups: {
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true,
+          },
           vendors: {
             test: /[\\/]node_modules[\\/]/,
             name: 'vendors',
